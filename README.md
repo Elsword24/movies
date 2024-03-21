@@ -2,6 +2,8 @@
 
 Ce projet vise à fournir une interface via une API permettant d'accéder à une base de données hébergée sur MongoDB, contenant des films et des commentaires.
 
+L'application est basé sur next-js, la base de données est en Mongo, swagger est aussi utilisé dans son fichier fait en JSON. L'application utilise Node.js
+
 ## Comment utiliser
 
 Pour utiliser l'application, assurez-vous d'avoir Node.js installé en version 18.7.5.
