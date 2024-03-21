@@ -1,10 +1,16 @@
-// pages/api/movies.js
-
-import clientPromise from "../../lib/mongodb";
+// /api/movies.js
+import {ORMservice} from "../../services/ORMservice"
+import {MongoConfigService} from "../../services/MongoConfigService"
 
 export default async function handler(req, res) {
-const client = await clientPromise;
-const db = client.db("sample_mflix");
-const movies = await db.collection("movies").find({}).limit(10).toArray();
-res.json({ status: 200, data: movies });
+    switch (req.method) {
+        case "POST" : 
+            const response = await ORMservice.connectAndAddOne(MongoConfigService.collections.movies,req.body)
+            res.json({status:200, data:response});
+
+        case "GET":
+           const movies = await ORMservice.connectAndFind(MongoConfigService.collections.movies)
+           res.json({status:200, data : movies})
+            
+}
 }

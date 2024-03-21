@@ -1,0 +1,234 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Movies API",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/movies": {
+            "get": {
+                "summary": "GET movies",
+                "tags":["movie"],
+                "operationId": "GetMovies",
+                "responses": {
+                    "200": {
+                        "description": "Return list of movies",
+                        "schema": {
+                            "$ref": "#/definitions/Movie"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "POST movies",
+                "tags":["movie"],
+                "operationId": "PostMovies",
+                "responses": {
+                    "200": {
+                        "description": "Post a movie",
+                        "schema": {
+                            "$ref": "#/definitions/Movie"
+                        }
+                    }
+                }
+            }
+        },
+        "/movies/[idMovie]": {
+            "get" : {
+                "summary" : "Get a movie",
+                "tags":["idMovie"],
+                "operationId" : "GetMovieById",
+                "responses": {
+                    "200": {
+                        "description": "get a movie",
+                        "schema":{
+                            "$ref": "#/definitions/Movie"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a movie",
+                "tags":["idMovie"],
+                "operationId": "UpdateMovieById",
+                "responses" : {
+                    "200" : {
+                        "description": "update a movie",
+                        "schema": {
+                            "$ref":"#/definitions/Movie"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a movie",
+                "tags":["idMovie"],
+                "operationId": "DeleteMovieById",
+                "responses": {
+                    "200" : {
+                        "description": "delete a movie",
+                        "schema": {
+                            "$ref":"#/definitions/Movie"
+                        }
+                    }
+                }
+            }
+        },
+        "/movies/[idMovie]/comment": {
+            "get" : {
+                "summary" : "get all coments of a movie",
+                "tags":["Comment"],
+                "operationId" : "GetAllCommentOfMovie",
+                "responses" : {
+                    "200" : {
+                        "description" : "get all comments of a movie",
+                        "schema" :{
+                            "$ref":"#/definitions/Comment"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary":"post a comment for a movie",
+                "tags":["Comment"],
+                "operationId" :"PostACommentOnMovie",
+                "responses" : {
+                    "200": {
+                        "description": "post a comment for a movie",
+                        "schema" : {
+                            "$ref":"#/definitions/Comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/movies/[idMovie]/comment/[idComment]" : {
+            "get" : {
+                "summary" :"get a comment of a movie",
+                "tags":["idComment"],
+                "operationId":"GetCommentOfMovie",
+                "responses": {
+                    "200" : {
+                        "description": "get a comment of a movie",
+                        "schema": {
+                            "$ref":"#/definitions/Comment"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary":"update a comment",
+                "tags":["idComment"],
+                "operationId":"UpdateCommentOfMovie",
+                "responses" : {
+                    "200" : {
+                        "description": "update a comment of a movie",
+                        "schema" : {
+                            "$ref" :"#/definitions/Comment"
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "summary" :"Delete a comment",
+                "tags":["idComment"],
+                "operationId" :"DeleteCommentById",
+                "responses" :{
+                    "200" : {
+                        "description":"delete a comment of a movie",
+                        "schema":{
+                            "$ref":"#/definitions/Comment"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Movie": {
+            "type": "object",
+            "properties": {
+                "plot": {"type": "string"},
+                "genres": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "runtime": {"type": "integer"},
+                "cast": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "num_mflix_comments": {"type": "integer"},
+                "poster": {"type": "string"},
+                "title": {"type": "string"},
+                "fullplot": {"type": "string"},
+                "languages": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "released": {"type": "string"},
+                "directors": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "writers": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "awards": {
+                    "type": "object",
+                    "properties": {
+                        "wins": {"type": "integer"},
+                        "nomination": {"type": "integer"},
+                        "text": {"type": "string"}
+                    }
+                },
+                "lastupdated": {"type": "string"},
+                "year": {"type": "integer"},
+                "imdb": {
+                    "type": "object",
+                    "properties": {
+                        "rating": {"type": "integer"},
+                        "votes": {"type": "integer"},
+                        "id": {"type": "integer"}
+                    }
+                },
+                "countries": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "tomatoes": {
+                    "type": "object",
+                    "properties": {
+                        "viewer": {
+                            "type": "object",
+                            "properties": {
+                                "rating": {"type": "integer"},
+                                "numReviews": {"type": "integer"}
+                            }
+                        },
+                        "lastUpdated": {"type": "string"}
+                    }
+                }
+            }
+        },
+        "Comment": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "email": {"type": "string"},
+                "movie_id": {"type": "integer"},
+                "text": {"type": "string"},
+                "date": {"type": "string"}
+            }
+        }
+    }
+}
